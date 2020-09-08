@@ -1,16 +1,17 @@
 class HeroesController < ApplicationController
-    skip_before_action :authenticate_user!, only: :index
-    before_action :set_hero, only:[:show]
-    def index
-        @heroes = Hero.all
-    end
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_hero, only: [:show]
+  def index
+    @heroes = Hero.all
+  end
 
-    def show
-    end
+  def show
+    @booking = Booking.new
+  end
 
-    private
+  private
 
-    def set_hero
-        @hero = Hero.find(params[:id])
-    end
+  def set_hero
+    @hero = Hero.find(params[:id])
+  end
 end
