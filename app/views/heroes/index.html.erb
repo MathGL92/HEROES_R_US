@@ -1,9 +1,24 @@
-<h1>List of Heroes</h1>
-<ul>
-<% @heroes.each do |hero| %>
-    <li><%= hero.name %></li>
-    <li><%= hero.power %></li>
-    <li><%= hero.description %></li>
-    <li><%= hero.price %></li>
-<%end%>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <h1>List of Heroes</h1>
+
+      <% @heroes.each do |hero| %>
+
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= hero.name %></h2>
+            <h4><%= hero.power %></h4>
+            <p><%= hero.description %></p>
+          </div>
+            <h2><%= hero.price %> $</h2>
+        </div>
+      <%end%>
+      </ul>
+
+    </div>
+  </div>
+
+</div>
+
