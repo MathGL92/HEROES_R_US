@@ -13,13 +13,18 @@ class BookingsController < ApplicationController
     redirect_to hero_path(@hero)
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.status = params[:status]
+    @booking.save
+    redirect_to user_dashboard_index_path(current_user)
+  end
+
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total_price, :user_id, :hero_id)
+    params.require(:booking).permit(:start_date, :end_date, :total_price, :user_id, :hero_id, :status)
   end
-
-    
 
 end
 
