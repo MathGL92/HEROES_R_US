@@ -1,0 +1,23 @@
+.banner{
+    height: 100vh;
+    color: white;
+    background: linear-gradient(135deg, 
+                                rgba(0, 0, 0, 0.8) 0%,
+                                rgba(0, 0, 0, 0.3) 50%),
+                url('https://picsum.photos/200/300');
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+@media(max-width: 992px){   /*If BELOW 992px, make container diff size*/
+    .container{ width: 750px;}
+}
+@media(max-width: 768px){   /*IPAD*/
+    .container{ width: 500px;}
+}
+@media(max-width: 480px){   /*MOBILE*/
+    .container{ width: 350px; } 
+}
