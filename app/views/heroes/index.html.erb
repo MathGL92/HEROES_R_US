@@ -1,0 +1,7 @@
+<h1>List of Heroes</h1>
+<%= @heroes.each do |hero| %>
+    <%= link_to hero.name hero_path%>
+    <%= hero.power %>
+    <%= hero.description %>
+    <%= hero.price %>
+<%end%>

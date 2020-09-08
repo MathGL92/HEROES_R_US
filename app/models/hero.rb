@@ -3,5 +3,5 @@ class Hero < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   validates :name, :power, :description, :address, :price, presence: true
-  validates :name, uniqueness: true, message: "This hero already exists"
+  validates :name, uniqueness: true
 end
