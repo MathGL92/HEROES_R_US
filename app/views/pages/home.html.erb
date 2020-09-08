@@ -1,7 +1,11 @@
 <div class="banner">
         <div class="banner-content">
           <h1>HEROS"R"US</h1>
+          <%  if user_signed_in? %>
+          <p> Welcome back, <%= current_user.first_name %>!</p> 
+          <%else%>
           <p>At your service</p>
+          <%end%>
           <%= link_to "Find a Super Hero", heroes_path, class:"btn btn-primary"  %>
         </div>
 </div>
