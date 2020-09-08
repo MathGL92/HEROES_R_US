@@ -1,7 +1,9 @@
 <h1>List of Heroes</h1>
-<%= @heroes.each do |hero| %>
-    <%= link_to hero.name hero_path%>
-    <%= hero.power %>
-    <%= hero.description %>
-    <%= hero.price %>
+<ul>
+<% @heroes.each do |hero| %>
+    <li><%= hero.name %></li>
+    <li><%= hero.power %></li>
+    <li><%= hero.description %></li>
+    <li><%= hero.price %></li>
 <%end%>
+</ul>
