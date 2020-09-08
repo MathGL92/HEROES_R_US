@@ -1,0 +1,9 @@
+<h1>List of Heroes</h1>
+<ul>
+<% @heroes.each do |hero| %>
+    <li><%= hero.name %></li>
+    <li><%= hero.power %></li>
+    <li><%= hero.description %></li>
+    <li><%= hero.price %></li>
+<%end%>
+</ul>
