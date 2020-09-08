@@ -1,23 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-8">
-      <h1>List of Heroes</h1>
+
+    <div class="col-12 col-md-7 card-list">
+      <h1 class="my-5 text-center">List of Heroes</h1>
 
       <% @heroes.each do |hero| %>
 
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2><%= hero.name %></h2>
-            <h4><%= hero.power %></h4>
-            <p><%= hero.description %></p>
+        <%= link_to hero_path(hero) do %>
+
+          <div class="card-product my-3">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-content">
+              <div class="card-product-infos">
+                <h2><%= hero.name %></h2>
+                <p><%= hero.power %></p>
+                <p><%= hero.description %></p>
+              </div>
+              <h2 class="price"><%= hero.price %> $</h2>
+            </div>
           </div>
-            <h2><%= hero.price %> $</h2>
-        </div>
-      <%end%>
+
+        <% end %>
+      <% end %>
       </ul>
 
     </div>
+
+    <div class="col-12 col-md-5">
+      <div id="map">
+      </div>
+    </div>
+
   </div>
 
 </div>

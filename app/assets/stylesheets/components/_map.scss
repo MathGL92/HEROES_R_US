@@ -1,0 +1,9 @@
+#map{
+  flex: 0 0 300px; /*3.   Don't grow, don't shrink, take 300px*/
+  height: 100vh;   /*4*/ /*100vh==EXACT HEIGHT OF WINDOW*/   /*STICKY*/   /*1VH == 1%of window height*/
+  position: sticky; /*Google Maps's JS is injecting CSS. Override it with !important*/
+  top: 0; /*when 0px reached --> stick to top of page*/
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), asset-url('map-placeholder.png');
+  background-size: cover;
+  background-position: center center;
+}
