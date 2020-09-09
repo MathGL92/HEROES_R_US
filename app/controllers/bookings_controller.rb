@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @hero = Hero.find(params[:hero_id])
-    @user = current_user
+    @user = @hero.user
     @booking.user_id = @user.id
     @booking.hero_id = @hero.id
     @total_price = @hero.price * (@booking.end_date - @booking.start_date).to_i
