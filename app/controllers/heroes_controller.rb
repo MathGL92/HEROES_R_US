@@ -1,6 +1,21 @@
 class HeroesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_hero, only: [:show, :edit, :update]
+  
+  def new
+    @hero = Hero.new
+  end
+
+  def create
+    @hero = Hero.new(hero_params)
+    @hero.user = current_user
+    if @hero.save
+      redirect_to  user_dashboard_index_path(current_user)
+    else
+      render :new
+    end
+  end
+  
   def index
     @heroes = Hero.all
   end

@@ -1,5 +1,6 @@
 <h1>Dashboard Test</h1>
 <h3><%= @user.first_name  %>'s Dashboard</h3>
+<%= link_to 'Add a new Hero', new_hero_path %>
 <h4>Bookings</h4>
 <ul>
 <% @user.bookings.each do |booking| %>
@@ -11,4 +12,11 @@
        Status: <%= booking.status %> <%= link_to "Accept booking", hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to "Decline booking", hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
     </li>
     <% end %>
+</ul>
+
+<h4>My Heroes</h4>
+<ul>
+<% @user.heroes.each do |hero| %>
+	<li> Name: <%= hero.name %> </li>
+<% end %>
 </ul>
