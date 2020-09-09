@@ -20,7 +20,8 @@
        From: <%= booking.start_date %> |
        To: <%= booking.end_date %> |
        Price: $<%= booking.total_price %> AUD |
-       Booked by: <%= booking.user[:first_name] %> <%= booking.user[:last_name] %>
+       Booked by: <%= current_user.first_name %> <%= current_user.last_name %>
+       Status: <%= booking.status %>
     </li>
     <% end %>
 </ul>
