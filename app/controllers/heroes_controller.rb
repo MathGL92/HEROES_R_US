@@ -1,6 +1,6 @@
 class HeroesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_hero, only: [:show, :edit, :update]
+  before_action :set_hero, only: [:show, :edit, :update, :destroy]
 
   def new
     @hero = Hero.new
@@ -31,6 +31,11 @@ class HeroesController < ApplicationController
 
   def show
     @booking = Booking.new
+  end
+
+  def destroy
+    @hero.destroy
+    redirect_to  user_dashboard_index_path(current_user)
   end
 
   private
