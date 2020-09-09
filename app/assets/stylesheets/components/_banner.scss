@@ -1,10 +1,9 @@
 .banner{
     height: 100vh;
     color: white;
-    background: linear-gradient(135deg, 
-                                rgba(0, 0, 0, 0.8) 0%,
-                                rgba(0, 0, 0, 0.3) 50%),
-                url('https://picsum.photos/200/300');
+    background: linear-gradient(135deg,
+                                rgba(0, 0, 0, 0.6) 0%,
+                                rgba(0, 0, 0, 0.3) 50%), asset-url('landing.jpg');
     background-size: cover;
     display: flex;
     justify-content: space-around;
@@ -19,5 +18,17 @@
     .container{ width: 500px;}
 }
 @media(max-width: 480px){   /*MOBILE*/
-    .container{ width: 350px; } 
+    .container{ width: 350px; }
+}
+
+.banner-session{
+    height: 100%;
+    color: white;
+    background: linear-gradient(135deg,
+                                rgba(0, 0, 0, 0.6) 0%,
+                                rgba(0, 0, 0, 0.3) 50%), asset-url('landing.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

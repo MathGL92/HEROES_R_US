@@ -12,9 +12,21 @@ puts "Cleaning the database..."
 Hero.destroy_all
 User.destroy_all
 puts "Creating 2 users"
-user = User.create!(email: "user@user.com", password: "password", username: "AusMatt", last_name: "McCrystal", first_name: "Matthew")
-user2 = User.create!(email: "user2@user.com", password: "password", username: "BencetheMagpie", last_name: "Fulop", first_name: "Bence")
+
+
+user = User.new(email: "user@user.com", password: "password", username: "BencetheMagpie", last_name: "Fulop", first_name: "Bence")
+user_file = URI.open('https://kitt.lewagon.com/placeholder/users/bencefulop')
+user.photo.attach(io: user_file, filename: 'bence.jpg', content_type: 'image/jpg')
+user.save!
+
+
+user2 = User.create!(email: "user2@user.com", password: "password", username: "AusMat", last_name: "McCrystal", first_name: "Matthew")
+user2_file = URI.open('https://kitt.lewagon.com/placeholder/users/MattMcCrystal')
+user2.photo.attach(io: user2_file, filename: 'matthew.jpg', content_type: 'image/jpg')
 puts "Created #{User.count} users"
+
+
+
 puts "Creating 5 heroes"
 
 hero1 = Hero.new(name: "Mr Strong", power: "Strength", description: "I can lift anything, I'm really strong.", address: "73 Darcy St, Melbourne", price: 300)

@@ -1,7 +1,7 @@
 class HeroesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_hero, only: [:show, :edit, :update, :destroy]
-  
+
   def new
     @hero = Hero.new
   end
@@ -10,19 +10,19 @@ class HeroesController < ApplicationController
     @hero = Hero.new(hero_params)
     @hero.user = current_user
     if @hero.save
-      redirect_to  user_dashboard_index_path(current_user)
+      redirect_to user_dashboard_index_path(current_user)
     else
       render :new
     end
   end
-  
+
   def index
     @heroes = Hero.all
   end
 
   def edit
   end
-  
+
   def update
     @hero.update(hero_params)
 
@@ -37,7 +37,6 @@ class HeroesController < ApplicationController
     @hero.destroy
     redirect_to  user_dashboard_index_path(current_user)
   end
-
 
   private
 
