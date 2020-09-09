@@ -9,6 +9,7 @@ ruby '2.6.6'
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.16.0'
+gem 'geocoder'
 ###############
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

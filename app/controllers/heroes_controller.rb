@@ -18,6 +18,14 @@ class HeroesController < ApplicationController
 
   def index
     @heroes = Hero.all
+
+    @markers = @heroes.geocoded.map do |hero|
+      {
+        lat: hero.latitude,
+        lng: hero.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { hero: hero })
+      }
+    end
   end
 
   def edit
