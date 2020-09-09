@@ -11,41 +11,44 @@ require "open-uri"
 puts "Cleaning the database..."
 Hero.destroy_all
 User.destroy_all
-puts "Creating 1 user"
-user = User.create!(email: "user@user.com", password: "password", username: "abc123", last_name: "Tan", first_name: "Lily")
+puts "Creating 2 users"
+user = User.create!(email: "user@user.com", password: "password", username: "AusMatt", last_name: "McCrystal", first_name: "Matthew")
+user2 = User.create!(email: "user2@user.com", password: "password", username: "BencetheMagpie", last_name: "Fulop", first_name: "Bence")
+puts "Created #{User.count} users"
 puts "Creating 5 heroes"
 
-hero1 = Hero.new(name: "Lily", power: "Flight", description: "above 1000m high", address: "Melb", price: 600)
+hero1 = Hero.new(name: "Mr Strong", power: "Strength", description: "I can lift anything, I'm really strong.", address: "73 Darcy St, Melbourne", price: 300)
 hero1.user = user
 
-hero1_file = URI.open('https://images.unsplash.com/photo-1513384312027-9fa69a360337?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80')
+hero1_file = URI.open('https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
 hero1.photo.attach(io: hero1_file, filename: 'hero1.jpg', content_type: 'image/jpg')
 hero1.save!
 
 
 
-hero2 = Hero.new(name: "Monsiue", power: "Psychic", description: "can read minds", address: "EU", price: 400)
+hero2 = Hero.new(name: "The Teleportman", power: "Teleportation", description: "I can teleport you to anywhere in under 5 seconds, no kidding", address: "57 Flinders Lane, Melbourne", price: 8999)
 hero2.user = user
-hero2_file = URI.open('https://images.unsplash.com/photo-1559535332-db9971090158?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80')
+hero2_file = URI.open('https://images.unsplash.com/photo-1589686901292-69c7c0f73d7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
+')
 hero2.photo.attach(io: hero2_file, filename: 'hero2.jpg', content_type: 'image/jpg')
 hero2.save!
 
-hero3 = Hero.new(name: "Mathew", power: "Fire", description: "better than a flame thrower", address: "JP", price: 600)
+hero3 = Hero.new(name: "Fireman", power: "Fire Breathing", description: "Do you need to fix your barbeque? I can do that!", address: "JP", price: 600)
 hero3.user = user
-hero3_file = URI.open('https://images.unsplash.com/photo-1513384312027-9fa69a360337?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80')
+hero3_file = URI.open('https://images.unsplash.com/photo-1581102669483-5f0e38688a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80')
 hero3.photo.attach(io: hero3_file, filename: 'hero3.jpg', content_type: 'image/jpg')
 hero3.save!
 
-hero4 = Hero.new(name: "Bence", power: "Invisibility", description: "you can't see me anywhere", address: "US", price: 700)
+hero4 = Hero.new(name: "Maite the Invisible", power: "Invisibility", description: "I'm mighty and invisible", address: "68, Flinders St, Melbourne", price: 4000)
 hero4.user = user
-hero4_file = URI.open('https://images.unsplash.com/photo-1587500154541-1cafd74f0efc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80')
+hero4_file = URI.open('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80')
 hero4.photo.attach(io: hero4_file, filename: 'hero4.jpg', content_type: 'image/jpg')
 hero4.save!
 
 
-hero5= Hero.new(name: "Lil", power: "Teleportation", description: "I'm a ninja", address: "Melb", price: 900)
+hero5= Hero.new(name: "Butterfly lady", power: "Flight", description: "I will deliver your goods in no time", address: "457, Ghibli St, Germany", price: 8700)
 hero5.user = user
-hero5_file = URI.open('https://images.unsplash.com/photo-1531907700752-62799b2a3e84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80')
+hero5_file = URI.open('https://images.unsplash.com/photo-1494631781929-c23495644b46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
 hero5.photo.attach(io: hero5_file, filename: 'hero5.jpg', content_type: 'image/jpg')
 hero5.save!
 puts "Created: #{Hero.count} heroes"

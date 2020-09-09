@@ -8,6 +8,10 @@
     <li>Price Per/Day: $<%= @hero.price %> AUD </li>
 </ul>
 
+<% if current_user == @hero.user %>
+<%= render "form-edit", hero: @hero %>
+<% end %>
+
 <h4>This Hero is booked for:</h4>
 
 <ul>
