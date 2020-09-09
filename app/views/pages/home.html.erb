@@ -1,11 +1,11 @@
 <div class="banner">
         <div class="banner-content">
-          <h1>HEROS"R"US</h1>
-          <%  if user_signed_in? %>
-          <p> Welcome back, <%= current_user.first_name %>!</p>
-          <%else%>
-          <p>At your service</p>
-          <%end%>
-          <%= link_to "Find a Super Hero", heroes_path, class:"btn hero-green"  %>
+          <h1 class="py-3">HEROS"R"US</h1>
+          <% if user_signed_in? %>
+          <p class="greeting py-3"> Welcome back, <%= current_user.first_name %>!</p>
+          <% else %>
+          <p class="py-3">At your service</p>
+          <% end %>
+          <%= link_to "Find a Super Hero", heroes_path, class:"btn btn-green my-3"  %>
         </div>
 </div>
