@@ -31,8 +31,8 @@
 <%= simple_form_for [@hero, @booking]  do |f| %>
   <%= f.input :start_date, as: :date, start_year: Date.today.year - 0  %>
   <%= f.input :end_date, as: :date, start_year: Date.today.year - 0 %>
-  <%= f.submit "Book Hero" %>
-<% end %>
+  <%= f.submit "Book Super Hero", id:"sweet-alert-demo", class:"btn btn-primary" %>
+  <% end %>
 
 
 <%= link_to 'Go Back', heroes_path%>
