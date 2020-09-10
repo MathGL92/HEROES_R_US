@@ -1,5 +1,5 @@
 #map{
-  flex: 0 0 300px; /*3.   Don't grow, don't shrink, take 300px*/
+  // flex: 0 0 300px; /*3.   Don't grow, don't shrink, take 300px*/
   // height: 100vh;   /*4*/ /*100vh==EXACT HEIGHT OF WINDOW*/   /*STICKY*/   /*1VH == 1%of window height*/
   position: sticky; /*Google Maps's JS is injecting CSS. Override it with !important*/
   top: 0; /*when 0px reached --> stick to top of page*/
@@ -10,6 +10,14 @@
 
 .mapboxgl-popup {
   width: 200px;
+  a {
+    transition: all 0.5s ease-out;
+    display: block;
+    color: black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .mapboxgl-popup-content {
