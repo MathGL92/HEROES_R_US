@@ -5,21 +5,22 @@
                                 rgba(0, 0, 0, 0.6) 0%,
                                 rgba(0, 0, 0, 0.3) 50%), asset-url('landing.jpg');
     background-size: cover;
+    background-position: center center;
     display: flex;
     justify-content: space-around;
     align-items: center;
     text-align: center;
 }
 
-@media(max-width: 992px){   /*If BELOW 992px, make container diff size*/
-    .container{ width: 750px;}
-}
-@media(max-width: 768px){   /*IPAD*/
-    .container{ width: 500px;}
-}
-@media(max-width: 480px){   /*MOBILE*/
-    .container{ width: 350px; }
-}
+// @media(max-width: 992px){   /*If BELOW 992px, make container diff size*/
+//     .container{ width: 750px;}
+// }
+// @media(max-width: 768px){   /*IPAD*/
+//     .container{ width: 500px;}
+// }
+// @media(max-width: 480px){   /*MOBILE*/
+//     .container{ width: 350px; }
+// }
 
 .banner-session{
     height: 100%;
@@ -28,6 +29,7 @@
                                 rgba(0, 0, 0, 0.6) 0%,
                                 rgba(0, 0, 0, 0.3) 50%), asset-url('landing.jpg');
     background-size: cover;
+    background-position: center center;
     display: flex;
     justify-content: space-around;
     align-items: center;
