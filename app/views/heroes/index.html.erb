@@ -8,7 +8,7 @@
 
       <%= link_to hero_path(hero) do %>
 
-        <div class="card-product my-3">
+        <div class="card-product my-2">
        <% if hero.photo.attached? %>
         <%= cl_image_tag hero.photo.key, crop: :fill %>
         <%else%>
