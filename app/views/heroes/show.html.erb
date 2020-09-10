@@ -7,6 +7,10 @@
     <li>Address: <%= @hero.address %> </li>
     <li>Price Per/Day: $<%= @hero.price %> AUD </li>
 </ul>
+<h4> Reviews </h4>
+  <%#= @hero.review.each do |review| %>
+    <%#=review.content %>
+  <%# end%>
 
 <% if current_user == @hero.user %>
 <%= render "form-edit", hero: @hero %>
