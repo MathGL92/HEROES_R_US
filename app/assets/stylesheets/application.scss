@@ -9,6 +9,8 @@
 @import 'font-awesome';
 @import 'mapbox-gl/dist/mapbox-gl';
 @import 'flatpickr/dist/themes/material_blue.css';
+@import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
+
 
 // Your CSS partials
 @import 'components/index';
