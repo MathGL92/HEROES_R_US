@@ -1,14 +1,14 @@
 
 <div class="row">
 
-  <div class="col-12 col-md-7 card-list px-4">
+  <div class="col-12 col-md-7 card-list banner-index d-flex justify-content-center flex-column">
     <h1 class="my-5 text-center">Our Heroes</h1>
 
     <% @heroes.each do |hero| %>
 
       <%= link_to hero_path(hero) do %>
 
-        <div class="card-product my-3">
+        <div class="card-product my-2">
        <% if hero.photo.attached? %>
         <%= cl_image_tag hero.photo.key, crop: :fill %>
         <%else%>
@@ -18,7 +18,7 @@
             <div class="card-product-infos">
               <h2><%= hero.name %></h2>
               <p><%= hero.power %></p>
-              <p><%= hero.description %></p>
+              <p><em>"<%= hero.description %>"</em></p>
             </div>
             <h2 class="price"><%= hero.price %> $</h2>
           </div>
@@ -29,7 +29,7 @@
 
   </div>
 
-  <div class="col-12 col-md-5">
+  <div class="col-12 col-md-5 px-0 mx-0">
     <div id="map" style="width: auto; height: 100vh;"
    data-markers="<%= @markers.to_json %>"
    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
