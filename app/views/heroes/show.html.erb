@@ -1,40 +1,62 @@
-<h1>Hero Profile</h1>
-
-<ul>
-    <li>Name: <%= @hero.name %> </li>
-    <li>Power: <%= @hero.power %> </li>
-    <li>Description: <%= @hero.description %> </li>
-    <li>Address: <%= @hero.address %> </li>
-    <li>Price Per/Day: $<%= @hero.price %> AUD </li>
-</ul>
-<h4> Reviews </h4>
-  <%#= @hero.review.each do |review| %>
-    <%#=review.content %>
-  <%# end%>
+<h1 class="text-center"> <%= @hero.name %>'s Profile</h1>
+<div class="row d-flex justify-content-center">
+  <div class="card-product show-card p-0 m-auto col-11 d-flex justify-content-start">
+      <% if @hero.photo.attached? %>
+        <%= cl_image_tag @hero.photo.key, crop: :fill %>
+      <%else%>
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
+      <%end%>
+      <div class="card-content">
+        <div class="card-product-infos">
+          <h2><%= @hero.name %></h2>
+          <p><%= @hero.power %></p>
+          <p><%= @hero.description %></p>
+          <p><%= @hero.address %></p>
+        </div>
+        <h2 class="price">From: $<%= @hero.price %> / day</h2>
+    </div>
+  </div>
+</div>
+<div class="row d-flex justify-content-center">
+  <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
+    <h4> Reviews </h4>
+    <p>Review content will come here</p>
+    <p>Written by: A pretentious cunt</p>
+      <%#= @hero.review.each do |review| %>
+        <%#=review.content %>
+      <%# end%>
+  </div>
+    <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
+      <h4>This Hero is unavailable for:</h4>
+      <ul>
+        <% @hero.bookings.each do |booking| %>
+          <li>
+            From: <%= booking.start_date %> |
+            To: <%= booking.end_date %> |
+            Status: <%= booking.status %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="card-product booking-card m-3 col-6 d-flex flex-column justify-content-center">
+    <h4>Book this Hero</h4>
+    <%= simple_form_for [@hero, @booking],
+      wrapper: :inline_form,
+      html: { class: "form-inline" },
+      wrapper_mappings: {
+      boolean: :inline_boolean
+      } do |f| %>
+      <%= f.input :start_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
+      <%= f.input :end_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
+      <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
+    <% end %>
+  </div>
+</div>
 
 <% if current_user == @hero.user %>
 <%= render "form-edit", hero: @hero %>
 <% end %>
 
-<h4>This Hero is booked for:</h4>
-<ul>
-    <% @hero.bookings.each do |booking| %>
-    <li>
-       From: <%= booking.start_date %> |
-       To: <%= booking.end_date %> |
-       Price: $<%= booking.total_price %> AUD |
-       Booked by: <%= current_user.first_name %> <%= current_user.last_name %>
-       Status: <%= booking.status %>
-    </li>
-    <% end %>
-</ul>
-<h4>Book Hero:</h4>
 
-
-<%= simple_form_for [@hero, @booking] do |f| %>
-  <%= f.input :start_date, as: :string, input_html: { class:"col-2"} %>
-  <%= f.input :end_date, as: :string, input_html: { class:"col-2"} %>
-  <%= f.submit "Book Hero" %>
-<% end %>
 
 <%= link_to 'Go Back', heroes_path%>
