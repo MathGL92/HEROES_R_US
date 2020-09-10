@@ -7,7 +7,7 @@
     
     
         <div class="col-6 d-flex flex-direction-column">
-        <div class="card-product">
+        <div class="card-dashboard p-5">
             <h4>Booked Heroes</h4>
             <ul>
                 <% @user.bookings.each do |booking| %>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-6 d-flex flex-direction-column">
-        <div class="card-product mb-3 p-5">
+        <div class="card-dashboard mb-3 p-5">
             <h4>My Heroes</h4>
                 <ul>
                     <% @user.heroes.each do |hero| %>
