@@ -1,43 +1,42 @@
-<div class="container">
-  <div class="row">
 
-    <div class="col-12 col-md-7 card-list">
-      <h1 class="my-5 text-center">List of Heroes</h1>
+<div class="row">
 
-      <% @heroes.each do |hero| %>
+  <div class="col-12 col-md-7 card-list px-4">
+    <h1 class="my-5 text-center">Our Heroes</h1>
 
-        <%= link_to hero_path(hero) do %>
+    <% @heroes.each do |hero| %>
 
-          <div class="card-product my-3">
-         <% if hero.photo.attached? %>
-          <%= cl_image_tag hero.photo.key, crop: :fill %>
-          <%else%>
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
-          <%end%>
-            <div class="card-content">
-              <div class="card-product-infos">
-                <h2><%= hero.name %></h2>
-                <p><%= hero.power %></p>
-                <p><%= hero.description %></p>
-              </div>
-              <h2 class="price"><%= hero.price %> $</h2>
+      <%= link_to hero_path(hero) do %>
+
+        <div class="card-product my-3">
+       <% if hero.photo.attached? %>
+        <%= cl_image_tag hero.photo.key, crop: :fill %>
+        <%else%>
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg"/>
+        <%end%>
+          <div class="card-content">
+            <div class="card-product-infos">
+              <h2><%= hero.name %></h2>
+              <p><%= hero.power %></p>
+              <p><%= hero.description %></p>
             </div>
+            <h2 class="price"><%= hero.price %> $</h2>
           </div>
-        <% end %>
+        </div>
       <% end %>
-      </ul>
-
-    </div>
-
-    <div class="col-12 col-md-5">
-      <div id="map" style="width: auto; height: 100vh;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
+    <% end %>
+    </ul>
 
   </div>
 
+  <div class="col-12 col-md-5">
+    <div id="map" style="width: auto; height: 100vh;"
+   data-markers="<%= @markers.to_json %>"
+   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
 
 </div>
+
+
 

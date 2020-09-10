@@ -15,7 +15,7 @@ const initMapbox = () => {
     // create map
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/lt-lily/ckew533kp0f0e19obfucdrtz9'  //mapbox styling 
+      style: 'mapbox://styles/mathgl/ckewf66w00ot019qc1um0h8b0'  //mapbox styling
     });
     // create markers
     const markers = JSON.parse(mapElement.dataset.markers);
@@ -26,10 +26,10 @@ const initMapbox = () => {
       element.className = 'marker';
       element.style.backgroundImage = `url('${marker.image_url}')`;
       element.style.backgroundSize = 'contain';
-      element.style.width = '25px';
-      element.style.height = '25px';
+      element.style.width = '40px';
+      element.style.height = '40px';
       // Pass the element as an argument to the new marker
-      new mapboxgl.Marker()
+      new mapboxgl.Marker(element)
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(map);
