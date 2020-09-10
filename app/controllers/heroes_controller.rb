@@ -17,7 +17,11 @@ class HeroesController < ApplicationController
   end
 
   def index
-    @heroes = Hero.all
+    if params[:query].present?
+      @heroes = Hero.search_by_name_and_power("#{params[:query]}")
+    else
+      @heroes = Hero.all
+    end
 
     @markers = @heroes.geocoded.map do |hero|
       {
