@@ -1,12 +1,18 @@
-<h1>Add a new Hero</h1>
-<%= simple_form_for(@hero) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <%= f.input :name %>
-  <%= f.input :power %>
-  <%= f.input :description %>
-  <%= f.input :address %>
-  <%= f.input :price %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit %>
-<% end %>
+<div class="py-3 banner-new-hero">
+  <div class="col-10 col-lg-4 mx-auto">
+    <h1 class="text-center py-3">Add a new Hero</h1>
+    <%= simple_form_for(@hero) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.input :name %>
+      <%= f.input :power %>
+      <%= f.input :description %>
+      <%= f.input :address %>
+      <%= f.input :price %>
+      <%= f.input :photo, as: :file %>
+      <div class="text-center my-4">
+        <%= f.button :submit, class: "btn-green mb-3" %>
+      </div>
+    <% end %>
+  </div>
+</div>
