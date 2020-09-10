@@ -7,11 +7,14 @@
     <li>Address: <%= @hero.address %> </li>
     <li>Price Per/Day: $<%= @hero.price %> AUD </li>
 </ul>
+<h4> Reviews </h4>
+  <%#= @hero.review.each do |review| %>
+    <%#=review.content %>
+  <%# end%>
 
 <% if current_user == @hero.user %>
 <%= render "form-edit", hero: @hero %>
 <% end %>
-
 
 <h4>This Hero is booked for:</h4>
 <ul>
@@ -25,14 +28,13 @@
     </li>
     <% end %>
 </ul>
-
 <h4>Book Hero:</h4>
 
-<%= simple_form_for [@hero, @booking]  do |f| %>
-  <%= f.input :start_date, as: :date, start_year: Date.today.year - 0  %>
-  <%= f.input :end_date, as: :date, start_year: Date.today.year - 0 %>
-  <%= f.submit "Book Super Hero", id:"sweet-alert-demo", class:"btn btn-primary" %>
-  <% end %>
 
+<%= simple_form_for [@hero, @booking] do |f| %>
+  <%= f.input :start_date, as: :string, input_html: { class:"col-2"} %>
+  <%= f.input :end_date, as: :string, input_html: { class:"col-2"} %>
+  <%= f.submit "Book Hero" %>
+<% end %>
 
 <%= link_to 'Go Back', heroes_path%>

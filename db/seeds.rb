@@ -63,4 +63,5 @@ hero5.user = user
 hero5_file = URI.open('https://images.unsplash.com/photo-1494631781929-c23495644b46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
 hero5.photo.attach(io: hero5_file, filename: 'hero5.jpg', content_type: 'image/jpg')
 hero5.save!
+
 puts "Created: #{Hero.count} heroes"
