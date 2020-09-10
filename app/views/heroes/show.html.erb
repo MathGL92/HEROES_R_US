@@ -12,6 +12,11 @@
 <%= render "form-edit", hero: @hero %>
 <% end %>
 
+<h4>Book this hero</h4>
+<%= month_calendar do |date| %>
+  <%= date %>
+<% end %>
+
 <h4>This Hero is booked for:</h4>
 
 <ul>
