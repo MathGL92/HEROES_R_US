@@ -4,7 +4,9 @@
           <% if user_signed_in? %>
           <p class="greeting py-3"> Welcome back, <%= current_user.first_name %>!</p>
           <% else %>
-          <p class="py-3">At your service</p>
+          <p class="py-3">
+            <span id="banner-typed-text"></span>
+          </p>
           <% end %>
           <%= link_to "Find a Super Hero", heroes_path, class:"btn btn-green my-3"  %>
         </div>

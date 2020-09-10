@@ -27,6 +27,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initSweetalert } from '../plugins/init_sweetalert';
 import { initFlatpickr } from '../plugins/init_flatpickr';
 import { initAutocomplete } from "../plugins/init_autocomplete";
+import { loadDynamicBannerText } from "../plugins/banner";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -38,4 +39,5 @@ document.addEventListener('turbolinks:load', () => {
   initSweetalert();
   initFlatpickr();
   initAutocomplete();
+  loadDynamicBannerText();
 });
