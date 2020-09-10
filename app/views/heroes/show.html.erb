@@ -30,11 +30,11 @@
 </ul>
 <h4>Book Hero:</h4>
 
+
 <%= simple_form_for [@hero, @booking] do |f| %>
   <%= f.input :start_date, as: :string, input_html: { class:"col-2"} %>
   <%= f.input :end_date, as: :string, input_html: { class:"col-2"} %>
   <%= f.submit "Book Hero" %>
 <% end %>
-
 
 <%= link_to 'Go Back', heroes_path%>

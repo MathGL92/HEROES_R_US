@@ -1,3 +1,46 @@
+
+<div class:="container">
+    <div class="heading text-center">
+    
+        <h1>
+            <%= @user.first_name  %>'s Dashboard
+        </h1>
+        
+    </div>
+        
+
+    <div class="card-product">
+        <h4>Booked Heroes</h4>
+
+        <ul>
+            <% @user.bookings.each do |booking| %>
+            <li>
+            From: <%= booking.start_date %> |
+            To: <%= booking.end_date %> |
+            Price: $<%= booking.total_price %> AUD |
+            Booked: <%= booking.hero.name %>
+            Status: <%= booking.status %> <%= link_to "Accept booking", hero_booking_path(booking.hero, booking, status: "Accepted btn-primary"), method: :patch %> <%= link_to "Decline booking", hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
+            </li>
+            <% end %>
+        </ul>
+    
+    </div>
+
+    <div class="card-product mb-3">
+
+        <h4>My Heroes</h4>
+            <ul>
+            <% @user.heroes.each do |hero| %>
+                <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
+            <% end %>
+            </ul>
+
+    </div>  
+
+    <%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %>
+
+</div>
+=======
 <h1>Dashboard Test</h1>
 <h3><%= @user.first_name  %>'s Dashboard</h3>
 <%= link_to 'Add a new Hero', new_hero_path %>
