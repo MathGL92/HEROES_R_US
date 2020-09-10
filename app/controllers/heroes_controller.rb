@@ -17,13 +17,18 @@ class HeroesController < ApplicationController
   end
 
   def index
-    @heroes = Hero.all
+    if params[:query].present?
+      @heroes = Hero.search_by_name_and_power("#{params[:query]}")
+    else
+      @heroes = Hero.all
+    end
 
     @markers = @heroes.geocoded.map do |hero|
       {
         lat: hero.latitude,
         lng: hero.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { hero: hero })
+        infoWindow: render_to_string(partial: "info_window", locals: { hero: hero }),
+        image_url: helpers.asset_url('logo.png')
       }
     end
   end
@@ -39,6 +44,7 @@ class HeroesController < ApplicationController
 
   def show
     @booking = Booking.new
+    
   end
 
   def destroy

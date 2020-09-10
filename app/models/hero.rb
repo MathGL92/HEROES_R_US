@@ -8,4 +8,11 @@ class Hero < ApplicationRecord
 
   validates :name, :power, :description, :address, :price, :photo, presence: true
   validates :name, uniqueness: true
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_power,
+    against: [ :name, :power ],
+    using: {
+      tsearch: { prefix: true }
+    }
 end

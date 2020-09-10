@@ -17,7 +17,6 @@
 <% end %>
 
 <h4>This Hero is booked for:</h4>
-
 <ul>
     <% @hero.bookings.each do |booking| %>
     <li>
@@ -29,13 +28,13 @@
     </li>
     <% end %>
 </ul>
-
 <h4>Book Hero:</h4>
 
-<%= simple_form_for [@hero, @booking]  do |f| %>
-  <%= f.input :start_date, as: :date, start_year: Date.today.year - 0  %>
-  <%= f.input :end_date, as: :date, start_year: Date.today.year - 0 %>
+<%= simple_form_for [@hero, @booking] do |f| %>
+  <%= f.input :start_date, as: :string, input_html: { class:"col-2"} %>
+  <%= f.input :end_date, as: :string, input_html: { class:"col-2"} %>
   <%= f.submit "Book Hero" %>
 <% end %>
+
 
 <%= link_to 'Go Back', heroes_path%>
