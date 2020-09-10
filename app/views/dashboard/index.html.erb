@@ -10,11 +10,17 @@
        Price: $<%= booking.total_price %> AUD |
        Booked: <%= booking.hero.name %>
        Status: <%= booking.status %> 
+
        <% if booking.hero.user == current_user %> <%#= only the owner can accept/decline a booking %>
-       <%= link_to "Accept booking", hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to "Decline booking", hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
-       <% end %>
+        <%= link_to "Accept booking", hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to "Decline booking", hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
+        <% end %>
        <% if booking.end_date < Date.today && booking.status == "Accepted"%>
         <%= link_to "Write a Review", new_booking_review_path(booking) %>
+            <%= simple_form_for [booking, @review] do |f| %>
+                <%= f.input :content %>
+                <%= f.input :rating %>
+                <%= f.submit %>
+            <% end %>
         <% end %>
     </li>
 

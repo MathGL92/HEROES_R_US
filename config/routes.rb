@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :heroes, only: [:new, :edit, :update, :create, :index, :show, :destroy] do
     resources :bookings, only: [:create, :update] 
   end
-   resources :bookings, only: [] do
-   resources :reviews, only: [:create, :new, :show]
+   resources :bookings, only: [:show] do
+    resources :reviews, only: [:create, :new]
    end
 
   resources :users, only: [:show] do

@@ -64,7 +64,4 @@ hero5_file = URI.open('https://images.unsplash.com/photo-1494631781929-c23495644
 hero5.photo.attach(io: hero5_file, filename: 'hero5.jpg', content_type: 'image/jpg')
 hero5.save!
 
-puts "Creating 1 booking"
-booking1 = Booking.new(start_date: Date.today, end_date: Date.today + 1, status: "Complete", user: current_user, hero: hero)
-
 puts "Created: #{Hero.count} heroes"
