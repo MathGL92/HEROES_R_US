@@ -3,5 +3,4 @@ class Booking < ApplicationRecord
   belongs_to :hero
 
   validates :start_date, :end_date, presence: true
-
 end

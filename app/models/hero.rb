@@ -7,4 +7,5 @@ class Hero < ApplicationRecord
 
   validates :name, :power, :description, :address, :price, :photo, presence: true
   validates :name, uniqueness: true
+
 end
