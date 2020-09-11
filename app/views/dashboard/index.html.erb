@@ -1,67 +1,97 @@
-<div class="banner-dashboard">
-  <div class="heading text-center p-3"><h1><%= @user.first_name  %>'s Dashboard</h1></div>
-
-  <div class="row">
-
-      <div class="col-4 d-flex flex-direction-column">
-        <div class="card-dashboard p-5">
-          <h4>My heroes booked</h4>
-          <ol>
-            <% @user.heroes.each do |hero| %>
-              <% hero.bookings.each do |booking| %>
-              <li>
-                Booked: <%= booking.hero.name %> |
-                From: <%= booking.start_date %> |
-                To: <%= booking.end_date %> |
-                Price: $<%= booking.total_price %> AUD |
-                Status: <%= booking.status %> <%= link_to ('<i class="fas fa-check"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to ('<i class="fas fa-skull"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
-              </li>
-              <% end %>
-            <% end %>
-          </ol>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="card-dashboard p-5">
-          <h4>My bookings</h4>
-          <ol>
-              <% @user.bookings.each do |booking| %>
-              <li>
+<div class="banner-dashboard d-flex flex-column">
+  <div class="heading text-center p-3 col"><h1 class="foo"><%= @user.first_name  %>'s Dashboard</h1></div>
+    <div class="row d-flex justify-content-center">
+      
+     
+      
+        
+          <div class="card-dashboard col-11 d-flex flex-column justify-content-center p-1">
+            <h4>Booking For My Heroes</h4>
+            <ol>
+              <% @user.heroes.each do |hero| %>
+                <% hero.bookings.each do |booking| %>
+                <li>
                   Booked: <%= booking.hero.name %> |
                   From: <%= booking.start_date %> |
                   To: <%= booking.end_date %> |
                   Price: $<%= booking.total_price %> AUD |
-                  <br>
-                  Status: <%= booking.status %>
-
-                 <% if booking.end_date < Date.today && booking.status == "Accepted"%>
-                  <%= link_to "Write a Review", new_booking_review_path(booking) %>
-                      <%= simple_form_for [booking, @review] do |f| %>
-                          <%= f.input :content %>
-                          <%= f.input :rating, collection: 0..5 %>
-                          <%= f.submit %>
-                      <% end %>
-                  <% end %>
-              </li>
+                  Status: <%= booking.status %> <%= link_to ('<i class="fas fa-check"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to ('<i class="fas fa-skull"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
+                </li>
+                <% end %>
               <% end %>
-          </ol>
+            </ol>
+          </div>
         </div>
-      </div>
 
-      <div class="col-4 d-flex flex-direction-column">
-      <div class="card-dashboard mb-3 p-5">
-          <h4>My Heroes</h4>
-              <ul>
-                  <% @user.heroes.each do |hero| %>
-                      <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
-                  <% end %>
-              </ul>
-      </div>
-      </div>
+        <div class="row d-flex">
+        
+        <div class="col-10 col-md-5 d-flex flex-column justify-content-center card-dashboard p-1 mx-auto my-3">
+          
+            <h4>My bookings</h4>
+            <ol>
+                <% @user.bookings.each do |booking| %>
+                <li>
+                    Booked: <%= booking.hero.name %> |
+                    From: <%= booking.start_date %> |
+                    To: <%= booking.end_date %> |
+                    Price: $<%= booking.total_price %> AUD |
+                    <br>
+                    Status: <%= booking.status %>
 
-      <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
-  </div>
+                  <% if booking.end_date < Date.today && booking.status == "Accepted"%>
+                    <%= link_to "Write a Review", new_booking_review_path(booking) %>
+                        <%= simple_form_for [booking, @review] do |f| %>
+                            <%= f.input :content %>
+                            <%= f.input :rating, collection: 0..5 %>
+                            <%= f.submit %>
+                        <% end %>
+                    <% end %>
+                </li>
+                <% end %>
+            </ol>
+          
+        </div>
 
+        <div class="col-10 col-md-5 d-flex flex-column justify-content-center card-dashboard p-1 mx-auto my-3">
+        
+            <h4>My Heroes</h4>
+                <ul>
+                    <% @user.heroes.each do |hero| %>
+                        <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
+                    <% end %>
+                </ul>
+        
+          <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
+        </div>
+
+
+        </div>
+      
+      <div class="foo">
+  <span class="letter" data-letter="Apple">Apple</span>
+  <span class="letter" data-letter="B">B</span>
+  <span class="letter" data-letter="C">C</span>
+  <span class="letter" data-letter="D">D</span>
+  <span class="letter" data-letter="E">E</span>
+  <span class="letter" data-letter="F">F</span>
+  <span class="letter" data-letter="G">G</span>
+  <span class="letter" data-letter="H">H</span>
+  <span class="letter" data-letter="I">I</span>
+  <span class="letter" data-letter="L">L</span>
+  <span class="letter" data-letter="M">M</span>
+  <span class="letter" data-letter="N">N</span>
+  <span class="letter" data-letter="O">O</span>
+  <span class="letter" data-letter="P">P</span>
+  <span class="letter" data-letter="Q">Q</span>
+  <span class="letter" data-letter="R">R</span>
+  <span class="letter" data-letter="S">S</span>
+  <span class="letter" data-letter="T">T</span>
+  <span class="letter" data-letter="U">U</span>
+  <span class="letter" data-letter="V">V</span>
+  <span class="letter" data-letter="Z">Z</span>
+</div>
+
+  
+  
 </div>
 
