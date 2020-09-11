@@ -26,43 +26,49 @@
 </div>
 
 <div class="row d-flex justify-content-center">
-
-  <div class="card-product booking-card mx-auto my-3 col-10 col-md-6 d-flex flex-column justify-content-center">
-    <h4 class="pt-2">Book this Hero</h4>
-      <%= simple_form_for [@hero, @booking],
-        wrapper: :inline_form,
-        html: { class: "form-inline" },
-        wrapper_mappings: {
-        boolean: :inline_boolean
-        } do |f| %>
-          <%= f.input :start_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
-          <%= f.input :end_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
-          <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
-      <% end %>
-  </div>
-  <div class="card-product mx-auto my-3 col-10 col-md-4 d-flex flex-column justify-content-center">
-    <h4>This Hero is unavailable for:</h4>
-      <ul>
-        <% @hero.bookings.each do |booking| %>
-          <li><p>
-            From: <%= booking.start_date %> |
-            To: <%= booking.end_date %> |
-            Status: <%= booking.status %>
-          </p></li>
+  <div class="column col-10 col-md-7 p-0">
+    <div class="card-product booking-card d-flex flex-column justify-content-center my-3 p-3">
+      <h4 class="pt-2">Book this Hero</h4>
+        <%= simple_form_for [@hero, @booking],
+          wrapper: :inline_form,
+          html: { class: "form-inline" },
+          wrapper_mappings: {
+          boolean: :inline_boolean
+          } do |f| %>
+            <%= f.input :start_date, as: :string, input_html: { class: "mb-2 mr-sm-2", placeholder: "From..."} %>
+            <%= f.input :end_date, as: :string, input_html: { class: "mb-2 mr-sm-2", placeholder: "To..." } %>
+            <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
         <% end %>
-      </ul>
+    </div>
+    <div class="card-product d-flex flex-column justify-content-start my-3 p-3">
+      <h4> Reviews </h4>
+      <% @hero.reviews.each do |review| %>
+        <div class="review-card">
+          <%= review.booking.user.first_name %>
+          <%= review.content %>
+          <%= review.rating %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="card-product mx-auto m-3 col-6 d-flex flex-column justify-content-center">
-    <h4> Reviews </h4>
-    <% @hero.reviews.each do |review| %>
-      <div class="review-card">
-        <%= review.booking.user.first_name %>
-        <%= review.content %>
-        <%= review.rating %>
-      </div>
-    <% end %>
+  <div class="column col-10 col-md-4 p-0">
+    <div class="card-product-reviews d-flex flex-column justify-content-center ml-3 my-3">
+      <h4>This Hero is unavailable for:</h4>
+        <ul>
+          <% @hero.bookings.each do |booking| %>
+            <li><p>
+              From: <%= booking.start_date %> |
+              To: <%= booking.end_date %> |
+              Status: <%= booking.status %>
+            </p></li>
+          <% end %>
+        </ul>
+    </div>
   </div>
 </div>
+
+  
+
 <div class="text-center back-btn">
 <%= link_to ('<i class="far fa-arrow-alt-circle-left"></i>').html_safe, heroes_path%>
 </div>
