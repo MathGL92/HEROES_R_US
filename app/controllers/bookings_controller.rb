@@ -1,8 +1,7 @@
 class BookingsController < ApplicationController
-
   before_action :set_booking, only: [:update, :show]
+
   def create
-    
     @booking = Booking.new(booking_params)
     @hero = Hero.find(params[:hero_id])
     @user = current_user
@@ -11,11 +10,6 @@ class BookingsController < ApplicationController
     @total_price = @hero.price * (@booking.end_date - @booking.start_date).to_i
     @booking.total_price = @total_price
     @booking.save
-    
-    #   redirect_to hero_path(@hero), notice: 'Booking Request Confirmed: Check Dashboard for Status!'
-    # else
-    #   render :""
-    # end
 
   end
 
@@ -36,10 +30,10 @@ class BookingsController < ApplicationController
   def set_booking
     @booking = Booking.find(params[:id])
   end
+
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :total_price, :user_id, :hero_id, :status)
   end
-
 end
 
 
