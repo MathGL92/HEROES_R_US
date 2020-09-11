@@ -37,12 +37,36 @@
                   Status: <%= booking.status %>
 
                  <% if booking.end_date < Date.today && booking.status == "Accepted"%>
-                  <%= link_to "Write a Review", new_booking_review_path(booking) %>
-                      <%= simple_form_for [booking, @review] do |f| %>
+                  <div id="edit-hero-modal-trigger d-inline-block">
+                      <button type="button" class="btn btn-green d-inline-block" data-toggle="modal" data-target="#review-form" id="modal-edit-review">
+                        Write a review
+                      </button>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade" id="review-form" tabindex="-1" role="dialog" aria-labelledby="review-form-label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <%= simple_form_for [booking, @review] do |f| %>
+                        <div class="modal-header">
+                          <h5 class="modal-title d-inline-block" id="review-form-label">Write a review</h5>
+                          <span class="ml-2"><%= icon('fas', 'pencil-alt')%></span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
                           <%= f.input :content %>
                           <%= f.input :rating, collection: 0..5 %>
-                          <%= f.submit %>
-                      <% end %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <%= f.button :submit, class: "btn-green mb-3" %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <% end %>
               </li>
               <% end %>
