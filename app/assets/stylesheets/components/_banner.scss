@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-.banner-dashboard{
+.banner-dashboard {
     height: 100%;
     color: white;
     background: linear-gradient(135deg,
@@ -60,6 +60,7 @@
     background-size: cover;
     background-position: center center;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
