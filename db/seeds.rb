@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "open-uri"
 
-
 puts "Cleaning the database..."
+Review.destroy_all
+Booking.destroy_all
 Hero.destroy_all
 User.destroy_all
 puts "Creating 2 users"
@@ -27,7 +28,7 @@ puts "Created #{User.count} users"
 
 
 
-puts "Creating 5 heroes"
+puts "Creating 6 heroes"
 
 hero1 = Hero.new(name: "Mr Strong", power: "Strength", description: "I can lift anything, I'm really strong.", address: "73 Darcy St, Melbourne", price: 300)
 hero1.user = user
@@ -63,5 +64,11 @@ hero5.user = user
 hero5_file = URI.open('https://images.unsplash.com/photo-1494631781929-c23495644b46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')
 hero5.photo.attach(io: hero5_file, filename: 'hero5.jpg', content_type: 'image/jpg')
 hero5.save!
+
+hero6= Hero.new(name: "Nico the proto", power: "Superteacher", description: "Any problem in coding? I can help you fix any algorithm under 5 min. Test me, you will not regret it.", address: "6 Williams Road, Prahran 3181", price: 200)
+hero6.user = user
+hero6_file = URI.open("https://res.cloudinary.com/dnqhwb9dm/image/upload/v1599801384/Capture_d_e%CC%81cran_2020-09-11_a%CC%80_15.15.03_adr38l.png")
+hero6.photo.attach(io: hero6_file, filename: 'hero6.jpg', content_type: 'image/jpg')
+hero6.save!
 
 puts "Created: #{Hero.count} heroes"
