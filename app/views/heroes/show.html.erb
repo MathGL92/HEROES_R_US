@@ -40,19 +40,19 @@
             <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
         <% end %>
     </div>
-    <div class="card-product d-flex flex-column justify-content-start my-3 p-3">
+    <div class="card-product-reviews d-flex flex-column justify-content-start my-3 p-3">
       <h4> Reviews </h4>
       <% @hero.reviews.each do |review| %>
         <div class="review-card">
-          <%= review.booking.user.first_name %>
-          <%= review.content %>
-          <%= review.rating %>
+          <span class="stars" ><%= icon('fas', 'star') * review.rating%><%= icon('far', 'star') * (5 - review.rating)%></span> -
+          <%= review.content %> -
+          <em><%= review.booking.user.first_name %></em>
         </div>
       <% end %>
     </div>
   </div>
   <div class="column col-10 col-md-4 p-0">
-    <div class="card-product-reviews d-flex flex-column justify-content-center ml-3 my-3">
+    <div class="card-product-reviews d-flex flex-column justify-content-center ml-3 my-3 py-3">
       <h4>This Hero is unavailable for:</h4>
         <ul>
           <% @hero.bookings.each do |booking| %>
@@ -67,7 +67,7 @@
   </div>
 </div>
 
-  
+
 
 <div class="text-center back-btn">
 <%= link_to ('<i class="far fa-arrow-alt-circle-left"></i>').html_safe, heroes_path%>
