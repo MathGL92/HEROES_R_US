@@ -1,41 +1,42 @@
 
-<div class:="container" img src="../../assets/images/superman.jpg" class="img-fluid" alt="Responsive image">
 
-    <div class="heading text-center p-3"><h1><%= @user.first_name  %>'s Dashboard</h1></div>
+<div class="banner-dashboard">
+  <div class="heading text-center p-3"><h1><%= @user.first_name  %>'s Dashboard</h1></div>
 
-    <div class="row">
-    
-    
-        <div class="col-6 d-flex flex-direction-column">
-        <div class="card-dashboard p-5">
-            <h4>Booked Heroes</h4>
-            <ol>
-                <% @user.bookings.each do |booking| %>
-                <li>
-                    Booked: <%= booking.hero.name %> |
-                    From: <%= booking.start_date %> |
-                    To: <%= booking.end_date %> |
-                    Price: $<%= booking.total_price %> AUD |
-                    <br>
-                    Status: <%= booking.status %> <%= link_to ('<i class="fas fa-check"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to ('<i class="fas fa-skull"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
-                </li>
-                <% end %>
-            </ol>
-        </div>
-        </div>
+  <div class="row">
 
-        <div class="col-6 d-flex flex-direction-column">
-        <div class="card-dashboard mb-3 p-5">
-            <h4>My Heroes</h4>
-                <ul>
-                    <% @user.heroes.each do |hero| %>
-                        <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
-                    <% end %>
-                </ul>
-        </div>  
-        </div>
 
-        <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
-    </div>
+      <div class="col-6 d-flex flex-direction-column">
+      <div class="card-dashboard p-5">
+          <h4>Booked Heroes</h4>
+          <ol>
+              <% @user.bookings.each do |booking| %>
+              <li>
+                  Booked: <%= booking.hero.name %> |
+                  From: <%= booking.start_date %> |
+                  To: <%= booking.end_date %> |
+                  Price: $<%= booking.total_price %> AUD |
+                  <br>
+                  Status: <%= booking.status %> <%= link_to ('<i class="fas fa-check"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to ('<i class="fas fa-skull"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
+              </li>
+              <% end %>
+          </ol>
+      </div>
+      </div>
+
+      <div class="col-6 d-flex flex-direction-column">
+      <div class="card-dashboard mb-3 p-5">
+          <h4>My Heroes</h4>
+              <ul>
+                  <% @user.heroes.each do |hero| %>
+                      <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
+                  <% end %>
+              </ul>
+      </div>
+      </div>
+
+      <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
+  </div>
+
 </div>
 
