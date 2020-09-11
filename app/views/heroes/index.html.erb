@@ -21,6 +21,11 @@
               <p><em>"<%= hero.description %>"</em></p>
             </div>
             <h2 class="price"><%= hero.price %> $</h2>
+            <div class="avg-ratings-hero stars">
+              <% if hero.reviews.any? %>
+                <%= icon('fas', 'star') * hero.reviews.average(:rating).to_i %><%= icon('far', 'star') * (5 - hero.reviews.average(:rating).to_i) %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
