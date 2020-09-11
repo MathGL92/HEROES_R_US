@@ -1,5 +1,5 @@
 #map{
-  flex: 0 0 300px; /*3.   Don't grow, don't shrink, take 300px*/
+  // flex: 0 0 300px; /*3.   Don't grow, don't shrink, take 300px*/
   // height: 100vh;   /*4*/ /*100vh==EXACT HEIGHT OF WINDOW*/   /*STICKY*/   /*1VH == 1%of window height*/
   position: sticky; /*Google Maps's JS is injecting CSS. Override it with !important*/
   top: 0; /*when 0px reached --> stick to top of page*/
@@ -9,7 +9,15 @@
 }
 
 .mapboxgl-popup {
-  max-width: 200px;
+  width: 200px;
+  a {
+    transition: all 0.5s ease-out;
+    display: block;
+    color: black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .mapboxgl-popup-content {
@@ -17,7 +25,7 @@
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .card-product-pop-up {
@@ -27,12 +35,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .card-product-pop-up img {
   height: 100%;
-  width: 120px;
+  width: 100px;
   object-fit: cover;
 }
 
@@ -54,6 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   position: relative;
   width: 100%;
 }
