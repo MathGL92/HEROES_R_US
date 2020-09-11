@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "open-uri"
 
-
 puts "Cleaning the database..."
+Review.destroy_all
+Booking.destroy_all
 Hero.destroy_all
 User.destroy_all
 puts "Creating 2 users"
@@ -27,7 +28,7 @@ puts "Created #{User.count} users"
 
 
 
-puts "Creating 5 heroes"
+puts "Creating 6 heroes"
 
 hero1 = Hero.new(name: "Mr Strong", power: "Strength", description: "I can lift anything, I'm really strong.", address: "73 Darcy St, Melbourne", price: 300)
 hero1.user = user
