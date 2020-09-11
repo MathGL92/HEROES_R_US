@@ -1,4 +1,6 @@
-<h1 class="text-center"> <%= @hero.name %>'s Profile</h1>
+<div class="hero-show">
+
+<h1 class="text-center py-3"> <%= @hero.name %></h1>
 <div class="row d-flex justify-content-center">
   <div class="card-product show-card p-0 m-auto col-11 d-flex justify-content-start">
       <% if @hero.photo.attached? %>
@@ -8,10 +10,9 @@
       <%end%>
       <div class="card-content">
         <div class="card-product-infos">
-          <h2><%= @hero.name %></h2>
-          <p><%= @hero.power %></p>
-          <p><%= @hero.description %></p>
-          <p><%= @hero.address %></p>
+          <h3 class="pb-2"><span class="highlight">Super Power: </span><%= @hero.power %></h3>
+          <h2 class="pb-2"><span class="highlight">Description: </span><%= @hero.description %></h2>
+          <h2 class="pb-2"><span class="highlight">Location: </span><%= @hero.address %></></h2>
         </div>
         <h2 class="price">From: $<%= @hero.price %> / day</h2>
         <div id="edit-hero-modal-trigger">
@@ -24,8 +25,35 @@
     </div>
   </div>
 </div>
+
 <div class="row d-flex justify-content-center">
-  <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
+
+  <div class="card-product booking-card mx-auto my-3 col-10 col-md-6 d-flex flex-column justify-content-center">
+    <h4 class="pt-2">Book this Hero</h4>
+      <%= simple_form_for [@hero, @booking],
+        wrapper: :inline_form,
+        html: { class: "form-inline" },
+        wrapper_mappings: {
+        boolean: :inline_boolean
+        } do |f| %>
+          <%= f.input :start_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
+          <%= f.input :end_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
+          <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
+      <% end %>
+  </div>
+  <div class="card-product mx-auto my-3 col-10 col-md-4 d-flex flex-column justify-content-center">
+    <h4>This Hero is unavailable for:</h4>
+      <ul>
+        <% @hero.bookings.each do |booking| %>
+          <li><p>
+            From: <%= booking.start_date %> |
+            To: <%= booking.end_date %> |
+            Status: <%= booking.status %>
+          </p></li>
+        <% end %>
+      </ul>
+  </div>
+  <div class="card-product mx-auto m-3 col-6 d-flex flex-column justify-content-center">
     <h4> Reviews </h4>
     <% @hero.reviews.each do |review| %>
       <div class="review-card">
@@ -35,36 +63,14 @@
       </div>
     <% end %>
   </div>
-    <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
-      <h4>This Hero is unavailable for:</h4>
-      <ul>
-        <% @hero.bookings.each do |booking| %>
-          <li>
-            From: <%= booking.start_date %> |
-            To: <%= booking.end_date %> |
-            Status: <%= booking.status %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="card-product booking-card m-3 col-6 d-flex flex-column justify-content-center">
-    <h4>Book this Hero</h4>
-    <%= simple_form_for [@hero, @booking],
-      wrapper: :inline_form,
-      html: { class: "form-inline" },
-      wrapper_mappings: {
-      boolean: :inline_boolean
-      } do |f| %>
-      <%= f.input :start_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
-      <%= f.input :end_date, as: :string, input_html: { class: "mb-2 mr-sm-2" } %>
-      <%= f.button :submit, class: "btn btn-flat-book mb-2" %>
-    <% end %>
-  </div>
+</div>
+<div class="text-center back-btn">
+<%= link_to ('<i class="far fa-arrow-alt-circle-left"></i>').html_safe, heroes_path%>
+</div>
 </div>
 
   <div class="edit-hero">
     <% if current_user == @hero.user %>
-     <%#= render "form-edit", hero: @hero %>
 
     <!-- Modal -->
     <div class="modal fade" id="heroes-form" tabindex="-1" role="dialog" aria-labelledby="heroes-form-label" aria-hidden="true">
@@ -90,7 +96,6 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <%= f.button :submit, class: "btn-green mb-3" %>
             <% end %>
-          </div>
         </div>
       </div>
     </div>
@@ -102,4 +107,3 @@
 
 
 
-<%= link_to 'Go Back', heroes_path%>
