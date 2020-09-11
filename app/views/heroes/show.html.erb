@@ -27,11 +27,13 @@
 <div class="row d-flex justify-content-center">
   <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
     <h4> Reviews </h4>
-    <p>Review content will come here</p>
-    <p>Written by: A pretentious cunt</p>
-      <%#= @hero.review.each do |review| %>
-        <%#=review.content %>
-      <%# end%>
+    <% @hero.reviews.each do |review| %>
+      <div class="review-card">
+        <%= review.booking.user.first_name %>
+        <%= review.content %>
+        <%= review.rating %>
+      </div>
+    <% end %>
   </div>
     <div class="card-product mx-auto my-3 col-10 col-md-5 d-flex flex-column justify-content-center">
       <h4>This Hero is unavailable for:</h4>

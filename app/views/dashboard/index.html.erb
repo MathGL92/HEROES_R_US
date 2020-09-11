@@ -36,7 +36,7 @@
                   <br>
                   Status: <%= booking.status %>
 
-                 <% if booking.end_date < Date.today && booking.status == "Accepted"%>
+                 <% if booking.end_date < Date.today && booking.status == "Accepted" && booking.reviews.empty? %>
                   <div id="edit-hero-modal-trigger d-inline-block">
                       <button type="button" class="btn btn-green d-inline-block" data-toggle="modal" data-target="#review-form" id="modal-edit-review">
                         Write a review
