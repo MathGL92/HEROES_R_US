@@ -1,14 +1,15 @@
-<div class="banner-dashboard">
-  <div class="heading text-center p-3"><h1><%= @user.first_name  %>'s Dashboard</h1></div>
 
-  <div class="row">
+<div class="banner-dashboard d-flex flex-column">
 
-      <div class="col-4 d-flex flex-direction-column">
-        <div class="card-dashboard p-5">
-          <h4>My heroes booked</h4>
-          <ol>
-            <% @user.heroes.each do |hero| %>
-              <% hero.bookings.each do |booking| %>
+  <div class="heading text-center p-3"><h1 class="header"><%= @user.first_name  %>'s Dashboard</h1></div>
+
+    <div class="row d-flex justify-content-center">
+
+      <div class="card-dashboard col-11 d-flex flex-column justify-content center p-1 m-3">
+        <h4>Bookings For My Heroes:</h4>
+        <ol>
+          <% @user.heroes.each do |hero| %>
+            <% hero.bookings.each do |booking| %>
               <li>
                 Booked: <%= booking.hero.name %> |
                 From: <%= booking.start_date %> |
@@ -16,75 +17,73 @@
                 Price: $<%= booking.total_price %> AUD |
                 Status: <%= booking.status %> <%= link_to ('<i class="fas fa-check"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Accepted"), method: :patch %> <%= link_to ('<i class="fas fa-skull"></i>').html_safe, hero_booking_path(booking.hero, booking, status: "Declined"), method: :patch %>
               </li>
-              <% end %>
             <% end %>
-          </ol>
-        </div>
+          <% end %>
+        </ol>
       </div>
+      
 
-      <div class="col-4">
-        <div class="card-dashboard p-5">
-          <h4>My bookings</h4>
+      <div class="row d-flex">
+        <div class="card-dashboard col-11 col-md-5 d-flex flex-column justify-content center p-3 m-3">
+          <h4>My Bookings:</h4>
           <ol>
-              <% @user.bookings.each do |booking| %>
+            <% @user.bookings.each do |booking| %>
               <li>
-                  Booked: <%= booking.hero.name %> |
-                  From: <%= booking.start_date %> |
-                  To: <%= booking.end_date %> |
-                  Price: $<%= booking.total_price %> AUD |
-                  <br>
-                  Status: <%= booking.status %>
-
-                 <% if booking.end_date < Date.today && booking.status == "Accepted" && booking.reviews.empty? %>
-                  <div id="edit-hero-modal-trigger d-inline-block">
-                      <button type="button" class="btn btn-green d-inline-block" data-toggle="modal" data-target="#review-form" id="modal-edit-review">
-                        Write a review
-                      </button>
-                  </div>
-                  <!-- Modal -->
-                  <div class="modal fade" id="review-form" tabindex="-1" role="dialog" aria-labelledby="review-form-label" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <%= simple_form_for [booking, @review] do |f| %>
-                        <div class="modal-header">
-                          <h5 class="modal-title d-inline-block" id="review-form-label">Write a review</h5>
-                          <span class="ml-2"><%= icon('fas', 'pencil-alt')%></span>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <%= f.input :content %>
-                          <%= f.input :rating, collection: 0..5 %>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Close</button>
-                          <%= f.button :submit, class: "btn-green mb-3" %>
-                          <% end %>
+                Booked: <%= booking.hero.name %> |
+                From: <%= booking.start_date %> |
+                To: <%= booking.end_date %> |
+                Price: $<%= booking.total_price %> AUD |
+                <br>
+                Status: <%= booking.status %>
+                                
+                <% if booking.end_date < Date.today && booking.status == "Accepted" && booking.reviews.empty? %>
+                    <div id="edit-hero-modal-trigger d-inline-block">
+                        <button type="button" class="btn btn-green d-inline-block" data-toggle="modal" data-target="#review-form" id="modal-edit-review">
+                          Write a review
+                        </button>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="review-form" tabindex="-1" role="dialog" aria-labelledby="review-form-label" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <%= simple_form_for [booking, @review] do |f| %>
+                          <div class="modal-header">
+                            <h5 class="modal-title d-inline-block" id="review-form-label">Write a review</h5>
+                            <span class="ml-2"><%= icon('fas', 'pencil-alt')%></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <%= f.input :content %>
+                            <%= f.input :rating, collection: 0..5 %>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Close</button>
+                            <%= f.button :submit, class: "btn-green mb-3" %>
+                            <% end %>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <% end %>
+                <% end %>
               </li>
-              <% end %>
+            <% end %>
           </ol>
         </div>
-      </div>
+        
 
-      <div class="col-4 d-flex flex-direction-column">
-      <div class="card-dashboard mb-3 p-5">
-          <h4>My Heroes</h4>
-              <ul>
-                  <% @user.heroes.each do |hero| %>
-                      <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
-                  <% end %>
-              </ul>
+        
+        <div class="card-dashboard col-11 col-md-5 d-flex flex-column justify-content center p-3 m-3">
+          <h4>My Heroes:</h4>
+            <ul>
+              <% @user.heroes.each do |hero| %>
+                <li> Name: <%= hero.name %> <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, hero_path(hero),  method: :delete, data: { confirm: "Are you sure?" } %></li>
+              <% end %>
+            </ul>
+            <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
+        </div>
       </div>
-      </div>
-
-      <div class="m-5"><%= link_to 'Add a New Hero', new_hero_path, class:"btn btn-primary" %></div>
+    </div>
   </div>
-
 </div>
